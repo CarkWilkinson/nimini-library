@@ -5,7 +5,7 @@
 #
 # To run these tests, simply execute `nimble test`.
 
-import gemini_lib
+import nimini_lib
 import std/strutils
 import std/uri
 
@@ -32,9 +32,9 @@ proc connect(url: string) =
             link.removePrefix(" ")
             link = link.split()[0]
             if not (link.contains("://")):
-                var tempS = "gemini://" & parseUri(url).hostname & link
-                if tempS[^1] != "/":
-                    tempS = tempS & "/"
+                var tempS = "gemini://" & parseUri(url).hostname 
+                if not (link[0] == '/'):
+                    tempS = tempS & '/'
                 link = tempS & link
             echo links.len,  line
             links.add(link)
@@ -47,7 +47,7 @@ proc connect(url: string) =
         echo i, ". " & links[i] 
     let temp = readLine(stdin).parseInt()
 
-    if temp < 0:
+    if temp < 0 or temp >= links.len:
         return
     echo links[temp]
     connect(links[temp])

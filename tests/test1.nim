@@ -6,7 +6,7 @@
 # To run these tests, simply execute `nimble test`.
 
 import unittest
-import gemini_lib
+import nimini_lib
 import std/strutils
 const CRLF = "\r\n"
 let result: string = transaction("gemini://gemini.circumlunar.space/")
